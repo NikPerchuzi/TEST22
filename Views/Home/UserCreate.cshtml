@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "UserCreate";
+}
+
+<form class="form-signin" method="post" action="@Url.Action("UserCreate", "Home")" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <h3>Создать пользователя</h3>
+    <div class="form-group">
+        <label for="Name">Имя</label>
+        <input name="Name" type="text" class="form-control" id="Name" required>
+    </div>
+    <button type="submit" class="btn btn-success">Создать</button>
+    <a href="@Url.Action("UserList", "Home")" class="btn btn-info btn" role="button">К списку</a>
+    <a href="@Url.Action("UserReg", "Home")" class="btn btn-primary btn" role="button">На главную</a>
+
+</form>

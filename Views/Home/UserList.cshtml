@@ -1,0 +1,48 @@
+﻿@model TEST22.ViewModel.UsersIndexVM
+@{
+    ViewBag.Title = "UserList";
+}
+
+<h2>Список пользователей</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Сколько раз было вызвано</th>
+            <th scope="col">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.UserChecks)
+        {
+            <tr>
+                <th scope="col" class="userID">@user.Id</th>
+                <th scope="col">@user.Name</th>
+                <th scope="col">@user.Counter</th>
+                <td><button type="button" class="btn btn-danger" id="deleteBTN">Удалить</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("UserReg", "Home")" class="btn btn-success btn-lg" role="button">На главную</a>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
+<script>
+    $('#deleteBTN').on('click', function () {
+       
+        var id = $('.userID').html();
+        $.ajax({
+            url: '@Url.Action("MarkIsDeleted","Home")',
+            data: { id: id },
+            success: function (data) {
+                
+                if (data) {
+                    window.location.reload();
+                }
+            }
+        })
+    })
+</script>

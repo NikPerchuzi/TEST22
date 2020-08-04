@@ -1,0 +1,21 @@
+﻿@model TEST22.ViewModel.UserIndex
+@{
+    ViewBag.Title = "UserResult";
+}
+
+<h3>Результат</h3>
+
+<form method="POST" class="mbr-form form-with-styler" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Id" name="Id" value="@(Model.currentid)" disabled>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Name" name="Name" value="@(Model.Name)" disabled>
+        </div>
+    </div>
+    </br>
+    <a href="@Url.Action("UserList", "Home")" class="btn btn-info btn-lg" role="button">К списку</a>
+    <a href="@Url.Action("UserReg", "Home")" class="btn btn-primary btn-lg" role="button">На главную</a>
+</form>

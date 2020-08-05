@@ -21,7 +21,7 @@
                 <th scope="col" class="userID">@user.Id</th>
                 <th scope="col">@user.Name</th>
                 <th scope="col">@user.Counter</th>
-                <td><button type="button" class="btn btn-danger" id="deleteBTN">Удалить</button></td>
+                <td><button type="button" class="btn btn-danger deleteBTN">Удалить</button></td>
             </tr>
         }
     </tbody>
@@ -31,14 +31,13 @@
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
 <script>
-    $('#deleteBTN').on('click', function () {
-       
-        var id = $('.userID').html();
+    $('.deleteBTN').on('click', function () {
+        var id = $(this).parents('tr').find('th.userID').html();
         $.ajax({
             url: '@Url.Action("MarkIsDeleted","Home")',
             data: { id: id },
             success: function (data) {
-                
+
                 if (data) {
                     window.location.reload();
                 }
